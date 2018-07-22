@@ -65,18 +65,31 @@ $.fn.FrozenTable = function(iRowHead,iRowFoot,iColLeft,iColRight){//3,0,1
 			// oCloneTable.css("left",oDiv.offset().left);
 			// oCloneTable.css("top",(oDiv.offset().top+oDiv.outerHeight(true)-oCloneTable.outerHeight(true)-17));
 		}
+		// top冻结行与right冻结列交集
+		if(iRowHead>0 && iColRight>0){
+			var oCloneTable = $("<table id='oTableRH_"+oTableId+"'></table>");//创建的是左侧列和行交集的表头
+			oDiv.parent().append(oCloneTable);
+			oCloneTable.CloneTable(oTable,0,iRowHead,iColLeft,iColRight);
+			oCloneTable.css("position","absolute");
+			oCloneTable.css("z-index","1005");
+			oCloneTable.css("left",oDiv.offset().left+oDiv.outerWidth(true)-oCloneTable.outerWidth(true)-17);
+			oCloneTable.css("border-bottom-style",'none');
+            oCloneTable.css("border-top-style", 'none');
+			oCloneTable.css("top",oDiv.offset().top);
+		}
+
 	}
 	//top冻结行
     if (iRowHead > 0 && oTable.height() > oDiv.height()) {
-		var oCloneDiv = $("<div id='oDivH_"+oTableId+"'><table></table></div>");
-		oDiv.parent().append(oCloneDiv);
-		oCloneDiv.find("table").CloneTable(oTable,0,iRowHead,-1);
-		oCloneDiv.css("overflow","hidden");
-		oCloneDiv.css("width",oDiv.outerWidth(true)-17);
-		oCloneDiv.css("position","absolute");
-		oCloneDiv.css("z-index","1002");
-		oCloneDiv.css("left",oDiv.offset().left);
-		oCloneDiv.css("top",oDiv.offset().top);
+		// var oCloneDiv = $("<div id='oDivH_"+oTableId+"'><table></table></div>");
+		// oDiv.parent().append(oCloneDiv);
+		// oCloneDiv.find("table").CloneTable(oTable,0,iRowHead,-1);
+		// oCloneDiv.css("overflow","hidden");
+		// oCloneDiv.css("width",oDiv.outerWidth(true)-17);
+		// oCloneDiv.css("position","absolute");
+		// oCloneDiv.css("z-index","1002");
+		// oCloneDiv.css("left",oDiv.offset().left);
+		// oCloneDiv.css("top",oDiv.offset().top);
 	}
 	// bottom冻结行
     if (iRowFoot > 0 && oTable.height() > oDiv.height()) {
