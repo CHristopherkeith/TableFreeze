@@ -67,9 +67,9 @@ $.fn.FrozenTable = function(iRowHead,iRowFoot,iColLeft,iColRight){//3,0,1
 		}
 		// top冻结行与right冻结列交集
 		if(iRowHead>0 && iColRight>0){
-			var oCloneTable = $("<table id='oTableRH_"+oTableId+"'></table>");//创建的是左侧列和行交集的表头
+			var oCloneTable = $("<table id='oTableRH_"+oTableId+"'></table>");
 			oDiv.parent().append(oCloneTable);
-			oCloneTable.CloneTable(oTable,0,iRowHead,iColLeft,iColRight);
+			oCloneTable.CloneTable(oTable,0,iRowHead,-1,iColRight);
 			oCloneTable.css("position","absolute");
 			oCloneTable.css("z-index","1005");
 			oCloneTable.css("left",oDiv.offset().left+oDiv.outerWidth(true)-oCloneTable.outerWidth(true)-17);
@@ -127,8 +127,8 @@ $.fn.FrozenTable = function(iRowHead,iRowFoot,iColLeft,iColRight){//3,0,1
 		}
 	});
 };
-$.fn.CloneTable = function(oSrcTable,iRowStart,iRowEnd,iColumnEnd,iColumnStart){
-	console.log(iRowStart, iRowEnd, iColumnEnd)
+$.fn.CloneTable = function(oSrcTable,iRowStart,iRowEnd,iColumnEnd,colRightNum){
+	console.log(iRowStart, iRowEnd, iColumnEnd, colRightNum)
 	var iWidth = 0,iHeight = 0;
 	$(this).mergeAttributes(oSrcTable);
 	var Log="";
@@ -145,7 +145,8 @@ $.fn.CloneTable = function(oSrcTable,iRowStart,iRowEnd,iColumnEnd,iColumnStart){
 		var colCount = 0;
 		// 需要复制的列数
 		var colNumber = 0;
-		for(var j=0; j<(iColumnEnd==-1?oldTr.find("td").length:iColumnEnd); j++){
+		// for(var j=0; j<(iColumnEnd==-1?oldTr.find("td").length:iColumnEnd); j++){
+		for(var j=(colRightNum?(oldTr.find("td").length-colRightNum):0); j<(iColumnEnd==-1?oldTr.find("td").length:iColumnEnd); j++){
 			var oidTd = oldTr.find("td").eq(j);
 			colNumber++;
 			var colspan = oidTd.attr("colspan");
@@ -202,7 +203,8 @@ $.fn.CloneTable = function(oSrcTable,iRowStart,iRowEnd,iColumnEnd,iColumnStart){
 			newTr.mergeAttributes(oldTr);
 			var jWidth = 0;
 			iHeight += oldTr.outerHeight(true);
-			for(var j=0; j<colNumber;j++){
+			// for(var j=0; j<colNumber;j++){
+			for(var j=(colRightNum?(oldTr.find("td").length-colRightNum):0); j<colNumber+(colRightNum?(oldTr.find("td").length-colRightNum):0);j++){
 				if(isSingleRowspan){
 					continue;
 				}
