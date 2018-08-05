@@ -1,0 +1,1516 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>多对一JQeury实现表格行列冻结3</title>
+ 
+<style type='text/css'> 
+table{empty-cells:show;border-collapse:collapse;border-spacing:0}
+table{font-family:宋体; font-size:10pt;border:1px green solid;background-color:white;}
+table td{height:20px;text-align:center;border:1px green solid;}
+table .tabTh{color:green;font-weight:bold;background-color:#f1faee;}
+</style>
+ 
+<script type="text/javascript" src="./jquery.js"></script>
+<script type="text/javascript" src="./jquery-migrate-1.2.1.js"></script>
+<script type="text/javascript" src="./TableFreeze.js"></script>
+<script type='text/javascript'>
+$(document).ready(function(){
+ 
+	// $("#tab_Test1").FrozenTable(2,0,0);
+	
+	// $("#tab_Test2").FrozenTable(0,0,1);
+	
+	// $("#tab_Test3").FrozenTable(1,0,1);
+	
+	// $("#tab_Test4").FrozenTable(2,1,1);
+	
+	// $("#tab_Test5").FrozenTable(3,1,4);
+	
+	$("#tab_Test6").FrozenTable(3,1,3);
+	
+	// $("#tab_Test7").FrozenTable(2,2,1);
+	
+});
+</script>
+ 
+</head>
+<body>
+<!--**************************************-->
+<!-- <h3>例0:原始表格上加滚动条效果;</h3>
+<div style="overflow:auto;width:920px;height:229px;">
+	<table id="tab_Test0" border="1" width='900'>
+		<tr class='tabTh'>
+			<td width="100px">序号</td>
+			<td width="100px">用户名</td>
+			<td width="100px">姓名</td>
+			<td width="100px">归属机构</td>
+			<td width="100px">密码</td>
+			<td width="100px">用户类型</td>
+			<td width="200px">状 态(0无效/1有效)</td>
+			<td width="100px">备注</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>1</td>
+			<td>admin</td>
+			<td>admin</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>2</td>
+			<td>admin2</td>
+			<td>admin2</td>
+			<td>92</td>
+			<td>******</td>
+			<td>系统管理员2</td>	
+			<td>1</td>
+			<td>it管理员2</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>3</td>
+			<td>admin3</td>
+			<td>admin3</td>
+			<td>93</td>
+			<td>******</td>
+			<td>系统管理员3</td>	
+			<td>1</td>
+			<td>it管理员3</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>4</td>
+			<td>admin4</td>
+			<td>admin4</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员4</td>	
+			<td>14</td>
+			<td>it管理员4</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>5</td>
+			<td>admin5</td>
+			<td>admin5</td>
+			<td>95</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>6</td>
+			<td>admin6</td>
+			<td>admin6</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员6</td>	
+			<td>1</td>
+			<td>it管理员6</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>7</td>
+			<td>admin7</td>
+			<td>admin7</td>
+			<td>7</td>
+			<td>******</td>
+			<td>系统管理员7</td>	
+			<td>1</td>
+			<td>it管理员7</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>8</td>
+			<td>admin8</td>
+			<td>admin8</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员8</td>	
+			<td>1</td>
+			<td>it管理员8</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>9</td>
+			<td>admin9</td>
+			<td>admin9</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>10</td>
+			<td>admin10</td>
+			<td>admin</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员10</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>11</td>
+			<td>admin11</td>
+			<td>admin11</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员11</td>	
+			<td>1</td>
+			<td>it管理员11</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>12</td>
+			<td>admin12</td>
+			<td>admin12</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员12</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>13</td>
+			<td>admin</td>
+			<td>admin</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>14</td>
+			<td>admin4</td>
+			<td>admin4</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员4</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>15</td>
+			<td>admin</td>
+			<td>admin</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员5</td>	
+			<td>1</td>
+			<td>it管理员5</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>16</td>
+			<td>admin</td>
+			<td>admin6</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理6</td>	
+			<td>1</td>
+			<td>it管理员6</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>17</td>
+			<td>admin</td>
+			<td>admin</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>18</td>
+			<td>admin</td>
+			<td>admin</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>19</td>
+			<td>admin19</td>
+			<td>admin19</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>20</td>
+			<td>admin20</td>
+			<td>admin20</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+	</table>
+</div>
+<hr> -->
+ 
+<!--**************************************-->
+<!-- <h3>例一:2行固定 $("#tab_Test1").FrozenTable(2,0,0);</h3>
+<div style="OVERFLOW: auto;width:920px;height:229px;">
+	<table id="tab_Test1" border="1" width='900'>
+		<tr class='tabTh'>
+			<td colspan='8'>用户列表</td>
+		</tr>
+		<tr class='tabTh'>
+			<td width="100px">序号</td>
+			<td width="100px">用户名</td>
+			<td width="100px">姓名</td>
+			<td width="100px">归属机构</td>
+			<td width="100px">密码</td>
+			<td width="100px">用户类型</td>
+			<td width="200px">状 态(0无效/1有效)</td>
+			<td width="100px">备注</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>1</td>
+			<td>admin</td>
+			<td>admin</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>2</td>
+			<td>admin2</td>
+			<td>admin2</td>
+			<td>92</td>
+			<td>******</td>
+			<td>系统管理员2</td>	
+			<td>1</td>
+			<td>it管理员2</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>3</td>
+			<td>admin3</td>
+			<td>admin3</td>
+			<td>93</td>
+			<td>******</td>
+			<td>系统管理员3</td>	
+			<td>1</td>
+			<td>it管理员3</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>4</td>
+			<td>admin4</td>
+			<td>admin4</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员4</td>	
+			<td>14</td>
+			<td>it管理员4</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>5</td>
+			<td>admin5</td>
+			<td>admin5</td>
+			<td>95</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>6</td>
+			<td>admin6</td>
+			<td>admin6</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员6</td>	
+			<td>1</td>
+			<td>it管理员6</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>7</td>
+			<td>admin7</td>
+			<td>admin7</td>
+			<td>7</td>
+			<td>******</td>
+			<td>系统管理员7</td>	
+			<td>1</td>
+			<td>it管理员7</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>8</td>
+			<td>admin8</td>
+			<td>admin8</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员8</td>	
+			<td>1</td>
+			<td>it管理员8</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>9</td>
+			<td>admin9</td>
+			<td>admin9</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>10</td>
+			<td>admin10</td>
+			<td>admin</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员10</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>11</td>
+			<td>admin11</td>
+			<td>admin11</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员11</td>	
+			<td>1</td>
+			<td>it管理员11</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>12</td>
+			<td>admin12</td>
+			<td>admin12</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员12</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>13</td>
+			<td>admin</td>
+			<td>admin</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>14</td>
+			<td>admin4</td>
+			<td>admin4</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员4</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>15</td>
+			<td>admin</td>
+			<td>admin</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员5</td>	
+			<td>1</td>
+			<td>it管理员5</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>16</td>
+			<td>admin</td>
+			<td>admin6</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理6</td>	
+			<td>1</td>
+			<td>it管理员6</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>17</td>
+			<td>admin</td>
+			<td>admin</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>18</td>
+			<td>admin</td>
+			<td>admin</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>19</td>
+			<td>admin19</td>
+			<td>admin19</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>20</td>
+			<td>admin20</td>
+			<td>admin20</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+	</table>
+</div>
+<hr> -->
+ 
+<!--**************************************-->
+<!-- <h3>例二:0行1列固定 $("#tab_Test2").FrozenTable(0,0,1);</h3>
+<div style="OVERFLOW: auto;width:718px;height:229px;">
+	<table id="tab_Test2" border="1" width='900'>
+		<tr class='tabTh'>
+			<td width="100px">序号</td>
+			<td width="100px">用户名</td>
+			<td width="100px">姓名</td>
+			<td width="100px">归属机构</td>
+			<td width="100px">密码</td>
+			<td width="100px">用户类型</td>
+			<td width="200px">状 态(0无效/1有效)</td>
+			<td width="100px">备注</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>1</td>
+			<td>admin</td>
+			<td>admin</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>2</td>
+			<td>admin2</td>
+			<td>admin2</td>
+			<td>92</td>
+			<td>******</td>
+			<td>系统管理员2</td>	
+			<td>1</td>
+			<td>it管理员2</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>3</td>
+			<td>admin3</td>
+			<td>admin3</td>
+			<td>93</td>
+			<td>******</td>
+			<td>系统管理员3</td>	
+			<td>1</td>
+			<td>it管理员3</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>4</td>
+			<td>admin4</td>
+			<td>admin4</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员4</td>	
+			<td>14</td>
+			<td>it管理员4</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>5</td>
+			<td>admin5</td>
+			<td>admin5</td>
+			<td>95</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>6</td>
+			<td>admin6</td>
+			<td>admin6</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员6</td>	
+			<td>1</td>
+			<td>it管理员6</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>7</td>
+			<td>admin7</td>
+			<td>admin7</td>
+			<td>7</td>
+			<td>******</td>
+			<td>系统管理员7</td>	
+			<td>1</td>
+			<td>it管理员7</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>8</td>
+			<td>admin8</td>
+			<td>admin8</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员8</td>	
+			<td>1</td>
+			<td>it管理员8</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>9</td>
+			<td>admin9</td>
+			<td>admin9</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>10</td>
+			<td>admin10</td>
+			<td>admin</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员10</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>11</td>
+			<td>admin11</td>
+			<td>admin11</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员11</td>	
+			<td>1</td>
+			<td>it管理员11</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>12</td>
+			<td>admin12</td>
+			<td>admin12</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员12</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>13</td>
+			<td>admin</td>
+			<td>admin</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>14</td>
+			<td>admin4</td>
+			<td>admin4</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员4</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>15</td>
+			<td>admin</td>
+			<td>admin</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员5</td>	
+			<td>1</td>
+			<td>it管理员5</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>16</td>
+			<td>admin</td>
+			<td>admin6</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理6</td>	
+			<td>1</td>
+			<td>it管理员6</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>17</td>
+			<td>admin</td>
+			<td>admin</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>18</td>
+			<td>admin</td>
+			<td>admin</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>19</td>
+			<td>admin19</td>
+			<td>admin19</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>20</td>
+			<td>admin20</td>
+			<td>admin20</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+	</table>
+</div>
+<hr> -->
+ 
+ 
+<!--**************************************-->
+<!-- <h3>例三:1行1列固定 $("#tab_Test3").FrozenTable(1,0,1);</h3>
+<div id="div_Test3" style="OVERFLOW: auto;width:718px;height:229px;padding:0px">
+	<table id="tab_Test3" border="1" width='900'>
+		<tr class='tabTh'>
+			<td width="100px">序号</td>
+			<td width="100px">用户名</td>
+			<td width="100px">姓名</td>
+			<td width="100px">归属机构</td>
+			<td width="100px">密码</td>
+			<td width="100px">用户类型</td>
+			<td width="200px">状 态(0无效/1有效)</td>
+			<td width="100px">备注</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>1</td>
+			<td>admin</td>
+			<td>admin</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>2</td>
+			<td>admin2</td>
+			<td>admin2</td>
+			<td>92</td>
+			<td>******</td>
+			<td>系统管理员2</td>	
+			<td>1</td>
+			<td>it管理员2</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>3</td>
+			<td>admin3</td>
+			<td>admin3</td>
+			<td>93</td>
+			<td>******</td>
+			<td>系统管理员3</td>	
+			<td>1</td>
+			<td>it管理员3</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>4</td>
+			<td>admin4</td>
+			<td>admin4</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员4</td>	
+			<td>14</td>
+			<td>it管理员4</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>5</td>
+			<td>admin5</td>
+			<td>admin5</td>
+			<td>95</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>6</td>
+			<td>admin6</td>
+			<td>admin6</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员6</td>	
+			<td>1</td>
+			<td>it管理员6</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>7</td>
+			<td>admin7</td>
+			<td>admin7</td>
+			<td>7</td>
+			<td>******</td>
+			<td>系统管理员7</td>	
+			<td>1</td>
+			<td>it管理员7</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>8</td>
+			<td>admin8</td>
+			<td>admin8</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员8</td>	
+			<td>1</td>
+			<td>it管理员8</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>9</td>
+			<td>admin9</td>
+			<td>admin9</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>10</td>
+			<td>admin10</td>
+			<td>admin</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员10</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>11</td>
+			<td>admin11</td>
+			<td>admin11</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员11</td>	
+			<td>1</td>
+			<td>it管理员11</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>12</td>
+			<td>admin12</td>
+			<td>admin12</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员12</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>13</td>
+			<td>admin</td>
+			<td>admin</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>14</td>
+			<td>admin4</td>
+			<td>admin4</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员4</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>15</td>
+			<td>admin</td>
+			<td>admin</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员5</td>	
+			<td>1</td>
+			<td>it管理员5</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>16</td>
+			<td>admin</td>
+			<td>admin6</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理6</td>	
+			<td>1</td>
+			<td>it管理员6</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>17</td>
+			<td>admin</td>
+			<td>admin</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>18</td>
+			<td>admin</td>
+			<td>admin</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>19</td>
+			<td>admin19</td>
+			<td>admin19</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+		<tr align='center'>
+			<td><input type=checkbox>20</td>
+			<td>admin20</td>
+			<td>admin20</td>
+			<td>9</td>
+			<td>******</td>
+			<td>系统管理员</td>	
+			<td>1</td>
+			<td>it管理员</td>
+		</tr>
+	</table>
+</div>
+<hr> -->
+ 
+ 
+<!--**************************************-->
+<!-- <h3>例四:上2行下1行1列固定 $("#tab_Test4").FrozenTable(2,1,1);</h3>
+<div style="OVERFLOW: auto;width:518px;height:228px;">
+<table id="tab_Test4" border="1" width='800'>
+	<tbody>
+		<tr class='tabTh'>
+			<td rowspan=2 width="200" >评估险类</td>
+			<td colspan=3>再保前</td>
+			<td colspan=3>再保后</td>
+		</tr>
+		<tr class='tabTh'>
+			<td width="100" >评估</td>
+			<td width="100">分摊</td>
+			<td width="100">差异</td>
+			<td width="100">评估</td>
+			<td width="100">分摊</td>
+			<td width="100">差异</td>
+		</tr>
+		<tr>
+			<td>106T-保证保险</td>
+			<td>12312.1</td>
+			<td>122341</td>
+			<td>45645.45</td>
+			<td>6786.6</td>
+			<td>2345.43</td>
+			<td>6755.56</td>
+		</tr>
+		<tr>
+			<td>107T-车险(交强险)</td>
+			<td>12312.1</td>
+			<td>122341</td>
+			<td>45645.45</td>
+			<td>6786.6</td>
+			<td>2345.43</td>
+			<td>6755.56</td>
+		</tr>
+		<tr>
+			<td>108T-车险(商业险)</td>
+			<td>12312.1</td>
+			<td>122341</td>
+			<td>45645.45</td>
+			<td>6786.6</td>
+			<td>2345.43</td>
+			<td>6755.56</td>
+		</tr>
+		<tr>
+			<td>109T-房屋险</td>
+			<td>12312.1</td>
+			<td>122341</td>
+			<td>45645.45</td>
+			<td>6786.6</td>
+			<td>2345.43</td>
+			<td>6755.56</td>
+		</tr>
+		<tr>
+			<td>110T-工程险</td>
+			<td>12312.1</td>
+			<td>122341</td>
+			<td>45645.45</td>
+			<td>6786.6</td>
+			<td>2345.43</td>
+			<td>6755.56</td>
+		</tr>
+		<tr>
+			<td>111T-航空险</td>
+			<td>12312.1</td>
+			<td>122341</td>
+			<td>45645.45</td>
+			<td>6786.6</td>
+			<td>2345.43</td>
+			<td>6755.56</td>
+		</tr>
+		<tr>
+			<td>112T-核能保险</td>
+			<td>12312.1</td>
+			<td>122341</td>
+			<td>45645.45</td>
+			<td>6786.6</td>
+			<td>2345.43</td>
+			<td>6755.56</td>
+		</tr>
+		<tr>
+			<td>113T-货运险</td>
+			<td>12312.1</td>
+			<td>122341</td>
+			<td>45645.45</td>
+			<td>6786.6</td>
+			<td>2345.43</td>
+			<td>6755.56</td>
+		</tr>
+		<tr>
+			<td>114T-机损险</td>
+			<td>12312.1</td>
+			<td>122341</td>
+			<td>45645.45</td>
+			<td>6786.6</td>
+			<td>2345.43</td>
+			<td>6755.56</td>
+		</tr>
+ 
+		<tr>
+			<td>115T-家财_网络运输</td>
+			<td>12312.1</td>
+			<td>122341</td>
+			<td>45645.45</td>
+			<td>6786.6</td>
+			<td>2345.43</td>
+			<td>6755.56</td>
+		</tr>
+		<tr>
+			<td>116T-健康险</td>
+			<td>12312.1</td>
+			<td>122341</td>
+			<td>45645.45</td>
+			<td>6786.6</td>
+			<td>2345.43</td>
+			<td>6755.56</td>
+		</tr>
+		<tr>
+			<td>118T-农业保险</td>
+			<td>12312.1</td>
+			<td>122341</td>
+			<td>45645.45</td>
+			<td>6786.6</td>
+			<td>2345.43</td>
+			<td>6755.56</td>
+		</tr>
+		<tr>
+			<td>119T-其他险</td>
+			<td>12312.1</td>
+			<td>122341</td>
+			<td>45645.45</td>
+			<td>6786.6</td>
+			<td>2345.43</td>
+			<td>6755.56</td>
+		</tr>
+		<tr>
+			<td>120T-企财险</td>
+			<td>12312.1</td>
+			<td>122341</td>
+			<td>45645.45</td>
+			<td>6786.6</td>
+			<td>2345.43</td>
+			<td>6755.56</td>
+		</tr>
+		<tr>
+			<td>121T-石油保险</td>
+			<td>12312.1</td>
+			<td>122341</td>
+			<td>45645.45</td>
+			<td>6786.6</td>
+			<td>2345.43</td>
+			<td>6755.56</td>
+		</tr>
+		<tr>
+			<td>122T-责任险D&O</td>
+			<td>12312.1</td>
+			<td>122341</td>
+			<td>45645.45</td>
+			<td>6786.6</td>
+			<td>2345.43</td>
+			<td>6755.56</td>
+		</tr>
+		<tr>
+			<td>123T-责任险EPL</td>
+			<td>12312.1</td>
+			<td>122341</td>
+			<td>45645.45</td>
+			<td>6786.6</td>
+			<td>2345.43</td>
+			<td>6755.56</td>
+		</tr>
+		<tr>
+			<td>124T-责任险</td>
+			<td>12312.1</td>
+			<td>122341</td>
+			<td>45645.45</td>
+			<td>6786.6</td>
+			<td>2345.43</td>
+			<td>6755.56</td>
+		</tr>
+		<tr>
+			<td>125T-船舶险</td>
+			<td>12312.1</td>
+			<td>122341</td>
+			<td>45645.45</td>
+			<td>6786.6</td>
+			<td>2345.43</td>
+			<td>6755.56</td>
+		</tr>
+		<tr>
+			<td>126T-意外险</td>
+			<td>12312.1</td>
+			<td>122341</td>
+			<td>45645.45</td>
+			<td>6786.6</td>
+			<td>2345.43</td>
+			<td>6755.56</td>
+		</tr>
+		<tr>
+			<td>127T-家财险</td>
+			<td>12312.1</td>
+			<td>122341</td>
+			<td>45645.45</td>
+			<td>6786.6</td>
+			<td>2345.43</td>
+			<td>6755.56</td>
+		</tr>
+		<tr>
+			<td>合计</td>
+			<td>6435656756.45</td>
+			<td>3478787.78</td>
+			<td>9789789.78</td>
+			<td>456456456.4</td>
+			<td>2345.45645</td>
+			<td>2345645.645</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+<hr> -->
+ 
+ 
+<!--**************************************-->
+<!-- <h3>例五:上3行下1行4列固定 $("#tab_Test5").FrozenTable(3,1,4);</h3>
+<div style="OVERFLOW: auto;width:830px;height:228px;">
+	<table id='tab_Test5' border="1" width='1000'>
+		<tbody align="right">
+			<tr class='tabTh'>
+				<td rowspan="3" width="100">险种大类</td>
+				<td colspan='3'>201401</td>
+				<td colspan='3'>201402</td>
+				<td colspan='3'>201403</td>
+			</tr>
+			<tr class='tabTh'>
+				<td colspan='3'>保费收入-再保前</td>
+				<td colspan='3'>保费收入-再保前</td>
+				<td colspan='3'>保费收入-再保前</td>
+			</tr>
+			<tr class='tabTh'>
+				<td width="100">业务</td>
+				<td width="100">财务</td>
+				<td width="100">差异</td>
+				<td width="100">业务</td>
+				<td width="100">财务</td>
+				<td width="100">差异</td>
+				<td width="100">业务</td>
+				<td width="100">财务</td>
+				<td width="100">差异</td>
+			</tr>
+			<tr><td>106T-保证保险</td><td>1,550,703.52</td><td>1,550,703.52</td><td>0</td><td>33,253.36</td><td>33,751.68</td><td>-498.32</td><td>359,825.44</td><td>359,327.12</td><td><a href="javascript:funDetail(201403,11,'106T-保证保险');">498.32</a></td></tr><tr><td>107T-车险（交强险）</td><td>108,968,962.13</td><td>108,975,420.57</td><td>-6,458.44</td><td>59,672,975.8</td><td>59,672,975.8</td><td>0</td><td>93,049,926.62</td><td>93,048,446.62</td><td><a href="javascript:funDetail(201403,11,'107T-车险（交强险）');">1,480</a></td></tr><tr><td>108T-车险（商业险）</td><td>260,085,392.36</td><td>260,086,515.73</td><td>-1,123.37</td><td>131,815,686.81</td><td>131,819,291.79</td><td>-3,604.98</td><td>211,276,060.23</td><td>211,279,616.87</td><td><a href="javascript:funDetail(201403,11,'108T-车险（商业险）');">-3,556.64</a></td></tr><tr><td>109T-房屋险</td><td>1,107,386.23</td><td>1,119,230.85</td><td>-11,844.62</td><td>369,424.34</td><td>355,734.12</td><td>13,690.22</td><td>960,523.51</td><td>968,921.8</td><td><a href="javascript:funDetail(201403,11,'109T-房屋险');">-8,398.29</a></td></tr><tr><td>110T-工程险</td><td>52,470,322.9</td><td>52,507,149.28</td><td>-36,826.38</td><td>14,755,632.67</td><td>14,755,852.67</td><td>-220</td><td>15,896,332.08</td><td>16,042,977.52</td><td><a href="javascript:funDetail(201403,11,'110T-工程险');">-146,645.44</a></td></tr><tr><td>111T-航空险</td><td>35,000</td><td>35,000</td><td>0</td><td>24,000</td><td>24,000</td><td>0</td><td>624,139.65</td><td>624,139.65</td><td><a href="javascript:funDetail(201403,11,'111T-航空险');">0</a></td></tr><tr><td>112T-核能保险</td><td>-32,310.31</td><td>-32,310.31</td><td>0</td><td>-3,595.88</td><td>-3,595.88</td><td>-0</td><td>0</td><td>613,688.52</td><td><a href="javascript:funDetail(201403,11,'112T-核能保险');">-613,688.52</a></td></tr><tr><td>113T-货运险</td><td>43,497,043.86</td><td>30,272,003.63</td><td>13,225,040.23</td><td>30,613,997.26</td><td>43,864,961.78</td><td>-13,250,964.52</td><td>35,183,537.22</td><td>35,178,483.83</td><td><a href="javascript:funDetail(201403,11,'113T-货运险');">5,053.39</a></td></tr><tr><td>114T-机损险</td><td>29,099,318</td><td>29,140,225.36</td><td>-40,907.36</td><td>5,191,951.05</td><td>5,251,451.05</td><td>-59,500</td><td>4,391,957.53</td><td>4,410,737.16</td><td><a href="javascript:funDetail(201403,11,'114T-机损险');">-18,779.63</a></td></tr><tr><td>115T-家财_网络运输</td><td>46,837,972.77</td><td>46,837,972.77</td><td>0</td><td>29,376,846.16</td><td>28,095,149.71</td><td>1,281,696.45</td><td>52,867,517.14</td><td>52,867,517.14</td><td><a href="javascript:funDetail(201403,11,'115T-家财_网络运输');">0</a></td></tr><tr><td>116T-健康险</td><td>3,717,646.85</td><td>3,717,627.85</td><td>19</td><td>879,773.63</td><td>879,773.63</td><td>0</td><td>7,472,994.73</td><td>7,382,280.93</td><td><a href="javascript:funDetail(201403,11,'116T-健康险');">90,713.8</a></td></tr><tr><td>118T-农业保险</td><td>1,414,563.84</td><td>1,414,563.84</td><td>0</td><td>-</td><td>-</td><td>-</td><td>0</td><td>0</td><td><a href="javascript:funDetail(201403,11,'118T-农业保险');">0</a></td></tr><tr><td>119T-其他险</td><td>100,909.35</td><td>102,486.35</td><td>-1,577</td><td>107,333.2</td><td>107,327.26</td><td>5.94</td><td>58,285.9</td><td>53,785.9</td><td><a href="javascript:funDetail(201403,11,'119T-其他险');">4,500</a></td></tr><tr><td>120T-企财险</td><td>59,998,291.68</td><td>60,366,903.16</td><td>-368,611.48</td><td>54,224,227.21</td><td>54,277,584.45</td><td>-53,357.24</td><td>35,521,913</td><td>35,698,351.18</td><td><a href="javascript:funDetail(201403,11,'120T-企财险');">-176,438.18</a></td></tr><tr><td>121T-石油保险</td><td>0</td><td>0</td><td>0</td><td>10,162,810.36</td><td>10,162,810.34</td><td>0.02</td><td>1,273,794.7</td><td>1,350,044.13</td><td><a href="javascript:funDetail(201403,11,'121T-石油保险');">-76,249.43</a></td></tr><tr><td>122T-责任险D&O</td><td>3,625,020.13</td><td>3,819,020.14</td><td>-194,000.01</td><td>5,468,840.52</td><td>5,469,479.46</td><td>-638.94</td><td>4,218,825.8</td><td>4,219,266.33</td><td><a href="javascript:funDetail(201403,11,'122T-责任险D&O');">-440.53</a></td></tr><tr><td>123T-责任险EPL</td><td>19,881,666.11</td><td>19,882,001.02</td><td>-334.91</td><td>2,282,775.4</td><td>2,284,408.11</td><td>-1,632.71</td><td>6,306,791.86</td><td>6,318,862.07</td><td><a href="javascript:funDetail(201403,11,'123T-责任险EPL');">-12,070.21</a></td></tr><tr><td>124T-责任险</td><td>59,985,249.04</td><td>60,530,443.77</td><td>-545,194.73</td><td>13,735,315.84</td><td>13,877,263.33</td><td>-141,947.49</td><td>43,509,201.62</td><td>43,883,090.48</td><td><a href="javascript:funDetail(201403,11,'124T-责任险');">-373,888.86</a></td></tr><tr><td>125T-船舶险</td><td>4,923,672.2</td><td>4,926,172.2</td><td>-2,500</td><td>1,926,401.3</td><td>1,926,398.47</td><td>2.83</td><td>6,749,028.93</td><td>6,684,434.63</td><td><a href="javascript:funDetail(201403,11,'125T-船舶险');">64,594.3</a></td></tr><tr><td>126T-意外险</td><td>51,587,871.39</td><td>51,549,092.3</td><td>38,779.09</td><td>13,265,440.72</td><td>13,246,548.4</td><td>18,892.32</td><td>28,865,132.9</td><td>28,968,105.07</td><td><a href="javascript:funDetail(201403,11,'126T-意外险');">-102,972.17</a></td></tr><tr><td>127T-家财险</td><td>5,104,985.4</td><td>5,105,175.4</td><td>-190</td><td>2,599,149.11</td><td>2,599,149.11</td><td>0</td><td>4,438,643.37</td><td>4,188,623.37</td><td><a href="javascript:funDetail(201403,11,'127T-家财险');">250,020</a></td></tr>
+			<tr class='tabTh'>
+				<td>合计</td>			<td>753,959,667.45</td><td>741,905,397.43</td><td>12,054,270.02</td><td>376,502,238.86</td><td>388,700,315.28</td><td>-12,198,076.42</td><td>553,024,432.25</td><td>554,140,700.32</td><td>6,268.07</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<hr> -->
+ 
+ 
+<!--**************************************-->
+<h3>例六:上2行下1行2列固定 $("#tab_Test6").FrozenTable(2,1,2);</h3>
+<div style="OVERFLOW: auto;width:1000px;height:222px;">
+<table id='tab_Test6' border="1" width='1200px'>
+	<tbody>
+		<tr class='tabth'>
+			<td rowspan='2' width='100px'>事故季度</td>
+			<td rowspan='2' width='100px'>业务线</td>
+			<td width='100px'>IBNR</td>
+			<td colspan='2'>已赚保费(再保后)</td>
+			<td colspan='3'>分摊参考数</td>
+			<td colspan='2'>IBNR分摊</td>
+		</tr>
+		<tr class='tabth'>
+			<td>(1)</td>
+			<td width='100px'>机构A<br>(2)</td>
+			<td width='100px'>机构B<br>(3)</td>
+			<td width='150px'>(4)=(2)* 55%1</td>
+			<td width='150px'>(5)=(3)* 30%2</td>
+			<td width='100px'>合计<br>(6)</td>
+			<td width='150px'>机构A<br>(7)=(4)/(6)*(1)</td>
+			<td width='150px'>机构B<br>(8)=(5)/(6)*(1)</td>
+		</tr>
+		<tr>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr class='tabth'>
+			<td colspan='2'>合计</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+<hr>
+ 
+ 
+<!--**************************************-->
+<!-- <h3>例七:固定列合并 $("#tab_Test7").FrozenTable(2,1,1);</h3>
+<div style="OVERFLOW: auto;width:500px;height:222px;">
+	<table id='tab_Test7'  border="1" width='600'>
+		<tr class='tabth'>
+			<td rowspan='2' width="150px">中支</td>
+			<td width="150px">上季度末IBNR/Case</td>
+			<td width="150px">截至当月再保后Case</td>
+			<td width="150px">IBNR</td>
+		</tr>
+		<tr class='tabth'>
+			<td>(1)</td>
+			<td>(2)</td>
+			<td>(3)=(1)*(2)</td>
+		</tr>
+		<tr>
+			<td rowspan='2'>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td rowspan='2'>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td rowspan='2'>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td rowspan='2'>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td rowspan='2'>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td rowspan='2'>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td rowspan='2'>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td rowspan='2'>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		<tr>
+			<td>0.0</td>
+			<td>0.0</td>
+			<td>0.0</td>
+		</tr>
+		
+	</table>
+</div>
+<hr> -->
+</body>
+</html>
