@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>last多对一JQeury实现表格行列冻结3</title>
+<title>TableFreeze表格冻结</title>
  
 <style type='text/css'> 
 table{empty-cells:show;border-collapse:collapse;border-spacing:0;table-layout:automatic;}
@@ -15,29 +15,26 @@ table .tabTh{color:green;font-weight:bold;background-color:#f1faee;}
 <script type="text/javascript" src="./jquery-migrate-1.2.1.js"></script>
 <script type="text/javascript" src="./TableFreeze.js"></script>
 <script type='text/javascript'>
-$(document).ready(function(){
- 
-	$("#tab_Test1").FrozenTable(2,0,0);
-	
-	$("#tab_Test2").FrozenTable(0,0,1);
-	
-	$("#tab_Test3").FrozenTable(1,0,1);
-	
-	$("#tab_Test4").FrozenTable(2,1,1);
-	
-	$("#tab_Test5").FrozenTable(3,1,4);
-	
-	$("#tab_Test6").FrozenTable(2,1,2);
-	
-	$("#tab_Test7").FrozenTable(2,2,1);
+	$(document).ready(function(){
+	 
+		$("#tab_Test1").FrozenTable(2,0,0);
+		
+		$("#tab_Test2").FrozenTable(0,0,1);
+		
+		$("#tab_Test3").FrozenTable(1,0,1);
+		
+		$("#tab_Test4").FrozenTable(2,1,1);
+		
+		$("#tab_Test5").FrozenTable(3,1,4);
+		
+		$("#tab_Test6").FrozenTable(2,1,2);
+		
+		$("#tab_Test7").FrozenTable(2,2,1);
 
-	$("#tab_Test8").FrozenTable(1,0,0,1);
+		$("#tab_Test8").FrozenTable(1,0,0,1);
 
-	$("#tab_Test9").FrozenTable(1,1,2,2);
-
-	
-	
-});
+		$("#tab_Test9").FrozenTable(1,1,2,2);
+	});
 </script>
  
 </head>
