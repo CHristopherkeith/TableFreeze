@@ -5,7 +5,7 @@
 <title>TableFreeze表格冻结</title>
  
 <style type='text/css'> 
-table{empty-cells:show;border-collapse:collapse;border-spacing:0;table-layout:automatic;}
+table{empty-cells:show;border-collapse:collapse;border-spacing:0}
 table{font-family:宋体; font-size:10pt;border:1px green solid;background-color:white;}
 table td{height:20px;text-align:center;border:1px green solid;}
 table .tabTh{color:green;font-weight:bold;background-color:#f1faee;}
@@ -483,7 +483,7 @@ table .tabTh{color:green;font-weight:bold;background-color:#f1faee;}
 <div style="OVERFLOW: auto;width:718px;height:229px;">
 	<table id="tab_Test2" border="1" width='900'>
 		<tr class='tabTh'>
-			<td width="100px">序号</td>
+			<td width="150px">序号</td>
 			<td width="100px">用户名</td>
 			<td width="100px">姓名</td>
 			<td width="100px">归属机构</td>
@@ -702,7 +702,7 @@ table .tabTh{color:green;font-weight:bold;background-color:#f1faee;}
 <div id="div_Test3" style="OVERFLOW: auto;width:718px;height:229px;padding:0px">
 	<table id="tab_Test3" border="1" width='900'>
 		<tr class='tabTh'>
-			<td width="100px">序号</td>
+			<td width="150px">序号</td>
 			<td width="100px">用户名</td>
 			<td width="100px">姓名</td>
 			<td width="100px">归属机构</td>
@@ -917,12 +917,12 @@ table .tabTh{color:green;font-weight:bold;background-color:#f1faee;}
  
  
 <!--**************************************-->
-<h3>例四:上2行下1行1列固定 $("#tab_Test4").FrozenTable(2,1,1);</h3>
+<h3>例四:上2行下1行1列固定 $("#tab_Test4").FrozenTable(2,2,1);</h3>
 <div style="OVERFLOW: auto;width:518px;height:228px;">
 <table id="tab_Test4" border="1" width='800'>
 	<tbody>
 		<tr class='tabTh'>
-			<td rowspan=2 width="200" >评估险类</td>
+			<td rowspan=2 width="300" >评估险类</td>
 			<td colspan=3>再保前</td>
 			<td colspan=3>再保后</td>
 		</tr>
@@ -1410,14 +1410,14 @@ table .tabTh{color:green;font-weight:bold;background-color:#f1faee;}
  
  
 <!--**************************************-->
-<h3>例七:固定列合并 $("#tab_Test7").FrozenTable(2,1,1);</h3>
+<h3>例七:固定列合并 $("#tab_Test7").FrozenTable(2,2,1);</h3>
 <div style="OVERFLOW: auto;width:500px;height:222px;">
 	<table id='tab_Test7'  border="1" width='600'>
 		<tr class='tabth'>
-			<td rowspan='2' width="150px">中支</td>
-			<td width="150px">上季度末IBNR/Case</td>
-			<td width="150px">截至当月再保后Case</td>
-			<td width="150px">IBNR</td>
+			<td rowspan='2' width="500px">中支</td>
+			<td width="500px">上季度末IBNR/Case</td>
+			<td width="500px">截至当月再保后Case</td>
+			<td width="500px">IBNR</td>
 		</tr>
 		<tr class='tabth'>
 			<td>(1)</td>
