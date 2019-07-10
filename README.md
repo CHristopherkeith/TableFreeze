@@ -25,7 +25,7 @@
 
 ## 项目地址
 
- - [在线预览地址](http://christopherkeith.me/TableFreeze/)
+ - [在线预览地址](https://christopherkeith.github.io/TableFreeze/)
  -  [Github地址](https://github.com/CHristopherkeith/TableFreeze)
 
 ## 特性
